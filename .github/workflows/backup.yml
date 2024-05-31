@@ -1,0 +1,37 @@
+name: Git Backup
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # Runs at midnight on the first day of every month
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 'lts/*'
+
+    - name: Install @larose/git-backup package
+      run: npm install -g @larose/git-backup
+
+    - name: Backup utt
+      run: |
+        git-backup snapshot \
+          --repo https://github.com/larose/utt.git \
+          --remote ${{ secrets.REMOTE }} \
+          --access-key-id ${{ secrets.ACCESS_KEY_ID }} \
+          --secret-access-key ${{ secrets.SECRET_ACCESS_KEY }}
+
+        git-backup prune \
+          --repo https://github.com/larose/utt.git \
+          --remote ${{ secrets.REMOTE }} \
+          --access-key-id ${{ secrets.ACCESS_KEY_ID }} \
+          --secret-access-key ${{ secrets.SECRET_ACCESS_KEY }} \
+          --retention-policy "monthly=3"

@@ -13,23 +13,27 @@ jobs:
       matrix:
         repo:
           [
+            "https://github.com/cicd-excellence/app.git",
+            "https://github.com/cicd-excellence/infra.git",
             "https://github.com/larose/cargo.git",
             "https://github.com/larose/conjugueur.git",
-            "https://github.com/larose/eef",
+            "https://github.com/larose/eef.git",
             "https://github.com/larose/ena.git",
+            "https://github.com/larose/git-backup-demo.git",
             "https://github.com/larose/pretty-printer.git",
             "https://github.com/larose/tsp.git",
             "https://github.com/larose/utt.git",
             "https://github.com/larose/verbes.git",
+            "https://github.com/larose/yarn-monorepo-change-based-testing-demo.git",
             "https://github.com/larose/wiki.git",
           ]
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
 

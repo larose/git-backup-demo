@@ -20,6 +20,8 @@ jobs:
             "https://github.com/larose/eef.git",
             "https://github.com/larose/ena.git",
             "https://github.com/larose/git-backup-demo.git",
+            "https://github.com/larose/hnsync.git",
+            "https://github.com/larose/lynx.git",
             "https://github.com/larose/pretty-printer.git",
             "https://github.com/larose/tsp.git",
             "https://github.com/larose/utt.git",
